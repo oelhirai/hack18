@@ -26,7 +26,6 @@
         if (authResult && !authResult.error) {
           authorizeButton.style.visibility = 'hidden';
           console.log("whatever yo!");
-          makeApiCall();
         } else {
           authorizeButton.style.visibility = '';
           authorizeButton.onclick = handleAuthClick;
@@ -39,29 +38,14 @@
       // Load the API and make an API call.  Display the results on the screen.
       function makeApiCall() {
         gapi.client.load('calendar', 'v3', function() {
-          var request = gapi.client.calendar.events.list({
+            var user_text = document.getElementById('text_field').value;
+            console.log(user_text);
+            var request = gapi.client.calendar.events.quickAdd({
             'calendarId': 'tartanhack18@gmail.com'
+            'text' : user_text
           });
           request.execute(function(resp) {
-           console.log(resp);
-           for (var i = 0; i < resp.items.length; i++) {
-             var title = document.createTextNode(resp.items[i].summary); 
-             var description = document.createTextNode(resp.items[i].description + ' ');
-             var location = document.createTextNode(resp.items[i].location + ' ');
-             var date = document.createTextNode('Start: ' + resp.items[i].start.date + ' End: ' + resp.items[i].end.date);
-
-             var div = document.createElement('div');
-             var h1 = document.createElement('h1');
-             h1.appendChild(title);
-             div.appendChild(location);
-             div.appendChild(description);
-             div.appendChild(h1);
-             var p = document.createElement('p');
-             p.appendChild(date);
-             div.appendChild(p);
-             document.body.appendChild(h1);
-             document.body.appendChild(div);
-           }
+          console.log(resp);
          });
         });
-    }
+      }

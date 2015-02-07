@@ -33,13 +33,16 @@
     
   </head>
   <body>
-    <div id="status">
-      <h1>Create new event</h1>
-      <form action="demo_form.asp">
+    <button id="authorize-button" style="visibility: hidden">Authorize</button>
+    <script src="authentication.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    
+    <h1>Create new event</h1>
+    <form id="text_field" action="demo_form.asp" onsubmit="makeApiCall">
         <input type="text" name="event" placeholder="Movie at 7 to 10 on friday"><br>
-      </form> 
-      <p>Advanced options</p>
-    </div>
+    </form> 
+    <p>Advanced options</p>
+    
   </body>
 </html>
 
