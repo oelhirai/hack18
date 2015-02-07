@@ -3,17 +3,18 @@
       // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
       // In your Developer Console project, add a JavaScript origin that corresponds to the domain
       // where you will be running the script.
-      var clientId = '837050751313';
+      var clientId = '592070593741-v7btq920h2jnomg72os2ghlklgi7n3lt.apps.googleusercontent.com';
       // Enter the API key from the Google Develoepr Console - to handle any unauthenticated
       // requests in the code.
       // The provided key works for this sample only when run from
       // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
       // To use in your own application, replace this API key with your own.
-      var apiKey = 'AIzaSyAdjHPT5Pb7Nu56WJ_nlrMGOAgUAtKjiPM';
+      var apiKey = 'AIzaSyAacSydWx5BBEZ1jzbodr7HnbMQtYuifk4';
       // To enter one or more authentication scopes, refer to the documentation for the API.
-      var scopes = 'https://www.googleapis.com/auth/plus.me';
+      var scopes = 'https://www.googleapis.com/auth/calendar';
       // Use a button to handle authentication the first time.
       function handleClientLoad() {
+        console.log("whatever yo!");
         gapi.client.setApiKey(apiKey);
         window.setTimeout(checkAuth,1);
       }
@@ -24,7 +25,8 @@
         var authorizeButton = document.getElementById('authorize-button');
         if (authResult && !authResult.error) {
           authorizeButton.style.visibility = 'hidden';
-          makeApiCall();
+          console.log("whatever yo!");
+          //makeApiCall();
         } else {
           authorizeButton.style.visibility = '';
           authorizeButton.onclick = handleAuthClick;
