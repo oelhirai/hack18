@@ -4,14 +4,14 @@
 // In your Developer Console project, add a JavaScript origin that corresponds to the domain
 // where you will be running the script.
 //var clientId = '592070593741-v7btq920h2jnomg72os2ghlklgi7n3lt.apps.googleusercontent.com';
-var clientId = '592070593741-7b1ou64p0sga7clnlc35gadg6rmcbnmb.apps.googleusercontent.com';
+var clientId = '592070593741-vjires9cbm6qsuhk1h60g20evf6viivp.apps.googleusercontent.com';
 // Enter the API key from the Google Develoepr Console - to handle any unauthenticated
 // requests in the code.
 // The provided key works for this sample only when run from
 // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
 // To use in your own application, replace this API key with your own.
 // var apiKey = 'AIzaSyAacSydWx5BBEZ1jzbodr7HnbMQtYuifk4';
-var apiKey = 'AIzaSyDKHkziAkSru5ZI8i4gFtfqV7x3VlzqvxE';
+var apiKey = 'AIzaSyAacSydWx5BBEZ1jzbodr7HnbMQtYuifk4';
 // To enter one or more authentication scopes, refer to the documentation for the API.
 var scopes = 'https://www.googleapis.com/auth/calendar';
 // Use a button to handle authentication the first time.
@@ -47,8 +47,8 @@ function makeApiCall() {
       var user_text = document.getElementById('text_field').value;
       console.log(user_text);
       var request = gapi.client.calendar.events.quickAdd({
-      'calendarId': 'tartanhack18@gmail.com'
-      'text' : user_text
+      'calendarId': 'tartanhack18@gmail.com',
+      'text' : user_text.toString()
     });
     request.execute(function(resp) {
     console.log(resp);
