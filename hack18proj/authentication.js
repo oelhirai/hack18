@@ -14,6 +14,9 @@
       var scopes = 'https://www.googleapis.com/auth/calendar';
       // Use a button to handle authentication the first time.
       function handleClientLoad() {
+        document.text_field.addEventListener("keydown", function(e) {
+            if (e.keyCode == 13) { makeApiCall(); }
+        } , false);
         console.log("whatever yo!");
         gapi.client.setApiKey(apiKey);
         window.setTimeout(checkAuth,1);
@@ -23,11 +26,11 @@
       }
       function handleAuthResult(authResult) {
         var authorizeButton = document.getElementById('authorize-button');
-        var userTextField = document.getElementById('text_field');
+        var textField = document.text_field;
         if (authResult && !authResult.error) {
           authorizeButton.style.visibility = 'hidden';
           console.log("whatever yo!");
-          userTextField.addEventListener("submit", makeApiCall);
+          //document.getElementById('text_field').addEventListener("submit", makeApiCall);
         } else {
           authorizeButton.style.visibility = '';
           authorizeButton.onclick = handleAuthClick;
@@ -40,14 +43,15 @@
       // Load the API and make an API call.  Display the results on the screen.
       function makeApiCall() {
             gapi.client.load('calendar', 'v3', function() {
-            var user_text = document.getElementById('text_field').value;
-            console.log(user_text);
+            var user_text = document.getElementById('event').value;
+            console.log(user_text.toString());
             var request = gapi.client.calendar.events.quickAdd({
             'calendarId': 'tartanhack18@gmail.com',
-            'text' : user_text.toString()
+            'text' : user_text.toString
           });
           request.execute(function(resp) {
           console.log(resp);
          });
         });
+        return false;
       }
