@@ -23,9 +23,11 @@
       }
       function handleAuthResult(authResult) {
         var authorizeButton = document.getElementById('authorize-button');
+        var userTextField = document.getElementById('text_field');
         if (authResult && !authResult.error) {
           authorizeButton.style.visibility = 'hidden';
           console.log("whatever yo!");
+          userTextField.addEventListener("submit", makeApiCall);
         } else {
           authorizeButton.style.visibility = '';
           authorizeButton.onclick = handleAuthClick;
@@ -37,12 +39,12 @@
       }
       // Load the API and make an API call.  Display the results on the screen.
       function makeApiCall() {
-        gapi.client.load('calendar', 'v3', function() {
+            gapi.client.load('calendar', 'v3', function() {
             var user_text = document.getElementById('text_field').value;
             console.log(user_text);
             var request = gapi.client.calendar.events.quickAdd({
-            'calendarId': 'tartanhack18@gmail.com'
-            'text' : user_text
+            'calendarId': 'tartanhack18@gmail.com',
+            'text' : user_text.toString()
           });
           request.execute(function(resp) {
           console.log(resp);
