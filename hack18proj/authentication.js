@@ -8,9 +8,6 @@ var clientId = '592070593741-7b1ou64p0sga7clnlc35gadg6rmcbnmb.apps.googleusercon
 
 // Enter the API key from the Google Develoepr Console - to handle any unauthenticated
 // requests in the code.
-// The provided key works for this sample only when run from
-// https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
-// To use in your own application, replace this API key with your own.
 // var apiKey = 'AIzaSyAacSydWx5BBEZ1jzbodr7HnbMQtYuifk4';
 var apiKey = 'AIzaSyDKHkziAkSru5ZI8i4gFtfqV7x3VlzqvxE';
 // To enter one or more authentication scopes, refer to the documentation for the API.
@@ -20,8 +17,8 @@ var scopes = 'https://www.googleapis.com/auth/calendar';
 function handleClientLoad() {
   document.text_field.addEventListener("keydown", function(e) {
       if (e.keyCode == 13) { makeApiCall(); }
-  } , false);
-  console.log("whatever yo!");
+  } , true);
+  console.log("print one " + Math.random());
   gapi.client.setApiKey(apiKey);
   window.setTimeout(checkAuth,1);
 }
@@ -35,7 +32,7 @@ function handleAuthResult(authResult) {
   var textField = document.text_field;
   if (authResult && !authResult.error) {
     authorizeButton.style.visibility = 'hidden';
-    console.log("whatever yo!");
+    console.log("print two " + Math.random());
     //document.getElementById('text_field').addEventListener("submit", makeApiCall);
   } else {
     authorizeButton.style.visibility = '';
@@ -45,7 +42,6 @@ function handleAuthResult(authResult) {
 
 function handleAuthClick(event) {
   gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
-  return false;
 }
 
 // Load the API and make an API call.  Display the results on the screen.
@@ -60,7 +56,15 @@ function makeApiCall() {
     });
     request.execute(function(resp) {
     console.log(resp);
+    document.getElementById('event').value = resp.htmlLink
    });
   });
-  return false;
+}
+
+function setValue() {
+  document.getElementById('event').value = Math.random()
+}
+
+window.onload = function() {
+document.addEventListener('DOMContentLoaded', setValue())
 }
